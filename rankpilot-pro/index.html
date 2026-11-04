@@ -17,6 +17,7 @@
       <li><a href="#installeren">Installeren</a></li>
       <li><a href="#starten">Eerste keer instellen</a></li>
       <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#ai-resultaat">AI-resultaat</a></li>
       <li><a href="#dashboardblok">Blok in het WP-dashboard</a></li>
       <li><a href="#lijst">Stoplichten in de lijst</a></li>
       <li><a href="#editor">In de editor</a></li>
@@ -35,7 +36,7 @@
   <main>
     <header class="hero">
       <p class="eyebrow">Handleiding</p>
-      <h1>RankPilot Pro<span class="ver">v1.1.3</span></h1>
+      <h1>RankPilot Pro<span class="ver">v1.2.0</span></h1>
       <p class="lead">De complete SEO-oplossing, plus een laag om vindbaar te zijn in ChatGPT, Perplexity, Gemini en Claude.</p>
       <div class="buttons">
         <a class="btn primary" href="https://github.com/stryv-nl/wp-rankpilot-pro/releases/latest">Download de plugin</a>
@@ -51,6 +52,7 @@
         <div class="card"><strong>SEO zoals je gewend bent</strong><span>Titels en meta descriptions, focus-keyphrases, schema.org, XML-sitemaps, kruimelpad, redirects met 404-log en interne linksuggesties.</span></div>
         <div class="card"><strong>Vindbaar in AI</strong><span><code>llms.txt</code>, een Markdown-versie van elke pagina, beheer van 17 AI-crawlers, IndexNow naar Bing en blokken voor kernpunten en FAQ.</span></div>
         <div class="card"><strong>Stoplichten overal</strong><span>Een SEO-, leesbaarheids- en AI-score in de editor, in de lijst met berichten en in een blok op het WordPress-dashboard.</span></div>
+        <div class="card"><strong>Zie wat AI oplevert</strong><span>Telt bezoekers uit ChatGPT, Perplexity, Gemini en Claude en laat zien hoeveel van hen contact opnemen. Zonder cookies.</span></div>
         <div class="card"><strong>Overstappen zonder gedoe</strong><span>Importeert titels, descriptions, keyphrases en redirects uit Yoast SEO en Rank Math.</span></div>
       </div>
       <div class="callout warn">
@@ -107,6 +109,50 @@
         <li><strong>Interne links-index opbouwen</strong> scant je content op links, voor de pagina <a href="#inzichten">Inzichten</a>.</li>
         <li><strong>SEO- en leesscores berekenen</strong> rekent alle pagina's door die nog geen score hebben.</li>
       </ul>
+    </section>
+
+    <section id="ai-resultaat">
+      <h2>AI-resultaat: van bezoek naar aanvraag</h2>
+      <p>De pagina <strong>RankPilot Pro → AI-resultaat</strong> laat zien wat verkeer uit ChatGPT, Perplexity, Gemini en Claude je oplevert. Niet alleen dat iemand kwam, maar ook of die persoon daarna contact opnam.</p>
+      <figure class="shot"><img src="img/ai-resultaat.webp" alt="De pagina AI-resultaat met vier cijfers, een grafiek per week, een overzicht per bron, de pagina's die AI-bezoekers aanbrengen en instellingen aan de zijkant" loading="lazy"><figcaption>AI-resultaat met voorbeeldcijfers van een lokale installateur.</figcaption></figure>
+
+      <h3>Wat je ziet</h3>
+      <ul>
+        <li><strong>Vier cijfers bovenaan:</strong> het aantal AI-bezoeken (met de verandering ten opzichte van de vorige periode), het aantal aanvragen, het percentage bezoekers dat een aanvraag doet en de beste bron.</li>
+        <li><strong>Grafiek:</strong> bezoeken per week, of per dag bij 7 dagen, verdeeld over de bronnen.</li>
+        <li><strong>Per bron:</strong> bezoeken, aanvragen en conversie van ChatGPT, Perplexity, Gemini, Claude en Overig.</li>
+        <li><strong>Per pagina:</strong> de pagina's waarop AI-bezoekers binnenkomen en welke tot een aanvraag leiden. Via <em>Bekijk pagina's met AI-bezoek maar zonder aanvraag</em> zie je waar mensen binnenkomen maar niets doen. Dat zijn vaak de pagina's die een duidelijkere stap verdienen.</li>
+        <li><strong>Periode en export:</strong> kies rechtsboven 7, 30 of 90 dagen. Met <em>Exporteer CSV</em> krijg je de cijfers per pagina en bron voor Excel.</li>
+      </ul>
+
+      <h3>Wat telt als aanvraag?</h3>
+      <p>Aan de zijkant stel je in wat voor jouw site telt. Standaard staan aan: een verstuurd formulier, een aangeklikt telefoonnummer, een aangeklikt e-mailadres en een aangeklikte WhatsApp-knop. Een WooCommerce-bestelling (met orderwaarde) staat standaard uit.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Doel</th><th>Wanneer telt het?</th></tr></thead>
+        <tbody>
+          <tr><td>Formulier</td><td>Het formulier is verstuurd zonder dat de pagina herlaadt. Dit werkt met Contact Form 7, WPForms, Gravity Forms, Fluent Forms en Elementor-formulieren.</td></tr>
+          <tr><td>Telefoon</td><td>Iemand klikt op een link die met <code>tel:</code> begint.</td></tr>
+          <tr><td>E-mail</td><td>Iemand klikt op een link die met <code>mailto:</code> begint.</td></tr>
+          <tr><td>WhatsApp</td><td>Iemand klikt op een <code>wa.me</code>- of <code>api.whatsapp.com</code>-link.</td></tr>
+          <tr><td>Bestelling</td><td>Iemand komt op de bedankpagina van WooCommerce. De orderwaarde wordt meegeteld.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Een aanvraag wordt toegekend aan de pagina waarop de bezoeker uit de AI-app binnenkwam, niet aan de pagina waar het formulier stond. Per bezoek telt elk soort aanvraag één keer.</p>
+
+      <h3>Zo werkt de herkenning</h3>
+      <p>De plugin kijkt naar de site waar de bezoeker vandaan komt (<code>chatgpt.com</code>, <code>perplexity.ai</code>, <code>gemini.google.com</code>, <code>claude.ai</code>) en naar de vermelding <code>utm_source=chatgpt.com</code> in de link. Bezoekers uit <code>copilot.microsoft.com</code> tellen mee onder Overig.</p>
+      <div class="callout warn">
+        <p><strong>Dit is een ondergrens.</strong>
+        Niet elke AI-app geeft door waar een bezoeker vandaan komt. Zulke bezoeken staan in je gewone statistieken bij Direct. De cijfers laten dus minimaal zien wat AI oplevert. De plugin telt ook alleen vanaf het moment dat de meting aanstaat, en niet voor je eigen bezoek als je bent ingelogd.</p>
+      </div>
+      <div class="callout warn">
+        <p><strong>Formulieren zonder AJAX tellen niet.</strong>
+        Een formulier dat na het versturen naar een nieuwe pagina doorstuurt, wordt niet herkend. Het aanklikken van telefoon, mail en WhatsApp werkt altijd.</p>
+      </div>
+
+      <h3>Privacy</h3>
+      <p>De meting werkt zonder cookies en zonder IP-adressen. De plugin bewaart per dag, pagina en bron alleen een teller, en wist cijfers ouder dan 400 dagen. Binnen één bezoek onthoudt de browser kort, tot het tabblad dicht gaat, dat iemand uit een AI-app kwam. Daardoor kan een aanvraag aan de juiste bron gekoppeld worden. Er gaat niets naar andere partijen.</p>
+      <p>Noem de meting in je privacyverklaring. Je kunt de meting uitzetten met de schakelaar <em>AI-bezoek meten</em> op deze pagina of bij Instellingen → AI-zichtbaarheid.</p>
     </section>
 
     <section id="dashboardblok">
@@ -348,7 +394,7 @@
 
     <section id="verwijderen">
       <h2>Verwijderen</h2>
-      <p>Deactiveer en verwijder de plugin via Plugins. De instellingen en de eigen tabellen (redirects, 404-log, linkindex en crawlerlog) worden dan opgeruimd. De SEO-gegevens bij je pagina's blijven bewaard, zodat je ze terugvindt als je de plugin opnieuw installeert.</p>
+      <p>Deactiveer en verwijder de plugin via Plugins. De instellingen en de eigen tabellen (redirects, 404-log, linkindex, crawlerlog en de AI-resultaatcijfers) worden dan opgeruimd. De SEO-gegevens bij je pagina's blijven bewaard, zodat je ze terugvindt als je de plugin opnieuw installeert.</p>
     </section>
 
     <footer class="site">
