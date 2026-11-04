@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Next-Gen Images: handleiding</title>
+<meta name="description" content="Handleiding voor Next-Gen Images, de WordPress-plugin van STRYV die afbeeldingen omzet naar WebP en AVIF.">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f6ec;
+  --text: #0c0c0c;
+  --muted: #5b5b58;
+  --line: #dcdac6;
+  --accent: #0c0c0c;
+  --accent-text: #ffffff;
+  --note-bg: #f7f6ec;
+  --warn-bg: #fff6e0;
+  --warn-line: #e8c46a;
+  --code-bg: #eeecda;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111;
+    --surface: #1b1b1a;
+    --text: #f2f2f0;
+    --muted: #a3a39e;
+    --line: #2e2e2c;
+    --accent: #f2f2f0;
+    --accent-text: #111111;
+    --note-bg: #1b1b1a;
+    --warn-bg: #2a2310;
+    --warn-line: #7a6320;
+    --code-bg: #1f1f1d;
+  }
+  :root:not([data-theme="light"]) .logo { filter: invert(1); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.layout { max-width: 1120px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 0; } }
+
+nav.toc { position: sticky; top: 0; align-self: start; padding: 32px 0; max-height: 100vh; overflow-y: auto; }
+nav.toc .logo { height: 16px; width: auto; display: block; margin-bottom: 28px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+nav.toc li { margin: 0; }
+nav.toc a { display: block; padding: 5px 0; color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--text); }
+@media (max-width: 860px) {
+  nav.toc { position: static; padding: 24px 0 8px; max-height: none; }
+  nav.toc ol { columns: 2; column-gap: 24px; }
+}
+
+main { padding: 32px 0 80px; min-width: 0; }
+header.hero { padding: 24px 0 36px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 16px; }
+.lead { font-size: 20px; color: var(--muted); margin: 0 0 24px; max-width: 38em; }
+.buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 11px 20px; border-radius: 8px; border: 1px solid var(--accent); text-decoration: none; font-weight: 600; font-size: 16px; }
+.btn.primary { background: var(--accent); color: var(--accent-text); }
+.btn.primary:hover { opacity: .88; }
+.btn.ghost:hover { background: var(--surface); }
+
+section { margin: 0 0 56px; }
+h2 { font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 16px; }
+h3 { font-size: 19px; margin: 28px 0 8px; }
+p { margin: 0 0 16px; max-width: 42em; }
+ul, ol.steps { margin: 0 0 16px; padding-left: 1.3em; max-width: 42em; }
+li { margin: 0 0 6px; }
+code { font: 0.9em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 5px; }
+pre { background: var(--code-bg); padding: 16px 18px; border-radius: 10px; overflow-x: auto; margin: 0 0 16px; font-size: 15px; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+
+.callout { background: var(--note-bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin: 0 0 20px; max-width: 42em; }
+.callout.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong:first-child { display: block; margin-bottom: 2px; }
+
+.table-wrap { overflow-x: auto; margin: 0 0 20px; }
+table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 16px; }
+th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+
+details { border-bottom: 1px solid var(--line); padding: 14px 0; max-width: 42em; }
+details summary { cursor: pointer; font-weight: 600; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; float: right; color: var(--muted); font-weight: 400; }
+details[open] summary::after { content: "−"; }
+details p { margin: 10px 0 0; }
+
+footer.site { border-top: 1px solid var(--line); padding: 28px 0 0; color: var(--muted); font-size: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+footer.site .logo { height: 13px; width: auto; }
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <nav class="toc" aria-label="Inhoud">
+    <a href="https://www.stryv.nl" aria-label="STRYV"><img class="logo" src="../assets/stryv-logo.svg" alt="STRYV"></a>
+    <ol>
+      <li><a href="#wat">Wat het doet</a></li>
+      <li><a href="#installeren">Installeren</a></li>
+      <li><a href="#instellen">Instellingen</a></li>
+      <li><a href="#avif">AVIF met WebP-terugval</a></li>
+      <li><a href="#uploads">Nieuwe uploads</a></li>
+      <li><a href="#bestaand">Bestaande afbeeldingen</a></li>
+      <li><a href="#terugdraaien">Terugdraaien</a></li>
+      <li><a href="#redirects">Redirects</a></li>
+      <li><a href="#statistieken">Statistieken en dashboard</a></li>
+      <li><a href="#wpcli">WP-CLI</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#problemen">Veelgestelde vragen</a></li>
+      <li><a href="#verwijderen">Verwijderen</a></li>
+      <li><a href="changelog/">Changelog</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <p class="eyebrow">Handleiding</p>
+      <h1>Next-Gen Images</h1>
+      <p class="lead">Zet afbeeldingen om naar WebP of AVIF, zodat je WordPress-site sneller laadt, zonder dat je ze één voor één hoeft aan te passen.</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://github.com/stryv-nl/wp-next-gen-images/releases/latest">Download de plugin</a>
+        <a class="btn ghost" href="https://github.com/stryv-nl/wp-next-gen-images">Bekijk op GitHub</a>
+        <a class="btn ghost" href="changelog/">Changelog</a>
+      </div>
+    </header>
+
+    <section id="wat">
+      <h2>Wat het doet</h2>
+      <p>Foto's en afbeeldingen zijn meestal het zwaarste onderdeel van een pagina. WebP en AVIF zijn nieuwere formaten die bij dezelfde kwaliteit veel kleiner zijn dan JPEG en PNG. Next-Gen Images zet je afbeeldingen daar automatisch naartoe om.</p>
+      <ul>
+        <li><strong>Nieuwe uploads</strong> worden meteen omgezet, inclusief alle thumbnails die WordPress aanmaakt.</li>
+        <li><strong>Bestaande afbeeldingen</strong> zet je in één keer om, op de achtergrond. Alle verwijzingen in je pagina's worden vanzelf bijgewerkt.</li>
+        <li><strong>Te grote afbeeldingen</strong> worden verkleind (standaard maximaal 2560 pixels) en foto's blijven goed gedraaid.</li>
+        <li><strong>Oude links</strong> naar de .jpg of .png blijven werken dankzij automatische doorverwijzingen.</li>
+        <li><strong>Terugdraaien</strong> kan als je het origineel hebt bewaard.</li>
+        <li><strong>AVIF met WebP-terugval</strong> levert de kleinste bestanden aan browsers die dat aankunnen en WebP aan de rest.</li>
+        <li><strong>Statistieken</strong> laten zien hoeveel ruimte je bespaart, op de instellingenpagina en in een blok op het WordPress-dashboard.</li>
+      </ul>
+      <div class="callout">
+        <p><strong>Wat er niet gebeurt</strong>
+        Animated GIF's, SVG's en afbeeldingen die al WebP of AVIF zijn blijven ongemoeid. Alleen JPEG en PNG worden omgezet.</p>
+      </div>
+    </section>
+
+    <section id="installeren">
+      <h2>Installeren</h2>
+      <h3>Vereisten</h3>
+      <ul>
+        <li>WordPress 5.8 of nieuwer. Voor AVIF is WordPress 6.5 of nieuwer nodig.</li>
+        <li>PHP 7.4 of nieuwer.</li>
+        <li>Een server met Imagick of GD die WebP kan maken. Voor AVIF moet de server ook AVIF ondersteunen. De plugin meldt het zelf als iets ontbreekt.</li>
+      </ul>
+      <h3>Stappen</h3>
+      <ol class="steps">
+        <li>Download <code>next-gen-images.zip</code> van de <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/latest">laatste release</a>.</li>
+        <li>Ga in WordPress naar <strong>Plugins → Nieuwe plugin → Plugin uploaden</strong> en kies de zip.</li>
+        <li>Klik op <strong>Activeren</strong>.</li>
+        <li>Open <strong>Next-Gen Images</strong> in het beheermenu aan de linkerkant.</li>
+      </ol>
+      <div class="callout">
+        <p><strong>Upgraden van "Auto WebP Optimizer"?</strong>
+        Deactiveer de oude versie en activeer daarna Next-Gen Images. Je instellingen, statistieken, bewaarde originelen en redirects blijven behouden. Verwijder de oude versie niet, want dat wist die gegevens.</p>
+      </div>
+    </section>
+
+    <section id="instellen">
+      <h2>Instellingen</h2>
+      <p>Alle instellingen staan op één pagina, in overzichtelijke blokken. Bovenaan zie je de besparing, rechts de voortgang van de bulkconversie, de updates en de serverchecks. De standaardwaarden werken voor de meeste sites goed. Wijzig je iets, dan zie je onderaan dat er niet-opgeslagen wijzigingen zijn. Met <strong>Standaard herstellen</strong> zet je alle velden terug op de standaardwaarden (opslaan moet je daarna nog zelf).</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Instelling</th><th>Standaard</th><th>Wat het doet</th></tr></thead>
+          <tbody>
+            <tr><td>Automatisch converteren</td><td>Aan</td><td>Zet nieuwe JPEG- en PNG-uploads om.</td></tr>
+            <tr><td>Formaat</td><td>WebP</td><td>Kies uit drie tegels. <strong>WebP</strong> is snel en overal ondersteund. <strong>AVIF</strong> is vaak 20 tot 30% kleiner, maar het omzetten kost meer tijd en geheugen en browsers zonder AVIF tonen de afbeelding niet. <strong>AVIF + WebP</strong> levert beide, zie <a href="#avif">hieronder</a>. Is AVIF niet beschikbaar, dan wordt WebP gebruikt.</td></tr>
+            <tr><td>Kwaliteit WebP</td><td>80</td><td>Schuifbalk tussen 1 en 100. Waarden van 75 tot 82 geven meestal de beste verhouding tussen kwaliteit en grootte.</td></tr>
+            <tr><td>Kwaliteit AVIF</td><td>60</td><td>AVIF heeft een lager getal nodig voor dezelfde zichtbare kwaliteit. 50 tot 65 is vergelijkbaar met WebP 80.</td></tr>
+            <tr><td>Maximale afmeting</td><td>2560 px</td><td>Kies 1920, 2560 of 3840 px, of vul een eigen waarde in. Grotere afbeeldingen worden verkleind. Kies <em>Niet verkleinen</em> (0) om de afmeting te laten staan.</td></tr>
+            <tr><td>Origineel bewaren</td><td>Uit</td><td>Bewaart het originele bestand op de server, zodat je later kunt terugdraaien. Kost extra opslagruimte.</td></tr>
+            <tr><td>Redirects</td><td>Aan</td><td>Stuurt oude .jpg- en .png-links door naar de nieuwe afbeelding.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout">
+        <p><strong>Wil je kunnen terugdraaien?</strong>
+        Zet <em>Origineel bewaren</em> dan aan vóórdat je afbeeldingen converteert. Het bewaren geldt alleen voor afbeeldingen die daarna worden omgezet.</p>
+      </div>
+    </section>
+
+    <section id="avif">
+      <h2>AVIF met WebP-terugval</h2>
+      <p>Kies je het formaat <strong>AVIF + WebP</strong>, dan blijft WebP het hoofdbestand van elke afbeelding. Daarnaast maakt de plugin per bestand (en per thumbnail) een AVIF met dezelfde naam. Op je site geeft de plugin die samen door met een <code>&lt;picture&gt;</code>-element: browsers die AVIF kunnen tonen laden de AVIF, alle andere browsers laden de WebP.</p>
+      <ul>
+        <li><strong>Veilig:</strong> omdat WebP het hoofdbestand is, blijven links, de database, redirects en terugdraaien werken zoals altijd. Mist er ergens een AVIF, dan krijgt de bezoeker gewoon de WebP.</li>
+        <li><strong>Nieuwe uploads:</strong> de WebP is meteen klaar. De AVIF-extra's worden kort daarna op de achtergrond gemaakt, zodat uploaden niet vertraagt.</li>
+        <li><strong>Bestaande afbeeldingen:</strong> converteer eerst je JPEG's en PNG's. Staan er al WebP-afbeeldingen in je bibliotheek, dan verschijnt in het blok <strong>Bestaande afbeeldingen</strong> de knop <strong>Maak AVIF-extra's</strong>. Of gebruik <code>wp awo avif</code>.</li>
+        <li><strong>Alleen waar het loont:</strong> is een AVIF niet kleiner dan de WebP, dan wordt hij weggegooid en blijft het bij de WebP.</li>
+        <li><strong>Terug naar alleen WebP:</strong> kies je weer WebP, dan worden de AVIF-bestanden niet meer gebruikt. Met <strong>AVIF-extra's verwijderen</strong> ruim je ze op.</li>
+      </ul>
+      <div class="callout warn">
+        <p><strong>Dit kost extra opslagruimte en rekentijd</strong>
+        Je hebt twee bestanden per afbeelding en het omzetten duurt langer. De AVIF-extra's worden gemaakt van de WebP, niet van het origineel. Op goedkope hosting kan het geheugen tekortschieten bij zeer grote afbeeldingen.</p>
+      </div>
+      <h3>Goed om te weten</h3>
+      <ul>
+        <li>De plugin zet <code>&lt;img&gt;</code>-tags in de uitvoer van je pagina's in een <code>&lt;picture&gt;</code>. Afbeeldingen die als CSS-achtergrond worden geladen, blijven WebP. Sliders en lazy-load-scripts die het <code>src</code> pas later invullen, worden niet omgezet.</li>
+        <li>Past een thema zijn opmaak aan via een selector als <code>figure &gt; img</code>, controleer dan even je belangrijkste pagina's. Wil je het element helemaal uitzetten, voeg dan toe aan je thema: <code>add_filter( 'ngi_picture_output', '__return_false' );</code></li>
+        <li>Gebruik je een cachingplugin of CDN? De omgezette pagina wordt gecached zoals gewoonlijk. Leeg de cache na het omschakelen.</li>
+        <li>De besparing in de statistieken gaat over het WebP-hoofdbestand. De extra winst van de AVIF-bestanden wordt niet apart meegeteld.</li>
+      </ul>
+    </section>
+
+    <section id="uploads">
+      <h2>Nieuwe uploads</h2>
+      <p>Zodra je een JPEG of PNG uploadt, gebeurt dit vanzelf:</p>
+      <ol class="steps">
+        <li>De afbeelding wordt, indien nodig, verkleind tot de ingestelde maximale afmeting.</li>
+        <li>Hij wordt omgezet naar WebP of AVIF met de ingestelde kwaliteit.</li>
+        <li>WordPress maakt alle thumbnails aan, ook in dat formaat.</li>
+      </ol>
+      <p>Is het nieuwe bestand niet kleiner dan het origineel, en is de afbeelding niet verkleind, dan blijft het origineel staan. Je krijgt dus nooit een grotere afbeelding.</p>
+    </section>
+
+    <section id="bestaand">
+      <h2>Bestaande afbeeldingen omzetten</h2>
+      <div class="callout warn">
+        <p><strong>Maak eerst een back-up</strong>
+        Deze actie past je database en uploads-map aan. Zonder <em>Origineel bewaren</em> kun je het niet terugdraaien.</p>
+      </div>
+      <ol class="steps">
+        <li>Controleer je instellingen en sla ze op. De huidige instellingen worden gebruikt.</li>
+        <li>Klik onder <strong>Bestaande afbeeldingen</strong> op <strong>Converteer bestaande afbeeldingen</strong> en bevestig.</li>
+        <li>Je ziet een voortgangsbalk. Je kunt de pagina sluiten: de conversie gaat door op de achtergrond.</li>
+      </ol>
+      <h3>Wat er allemaal wordt bijgewerkt</h3>
+      <ul>
+        <li>De afbeelding zelf en alle thumbnails, opnieuw aangemaakt in het nieuwe formaat.</li>
+        <li>Verwijzingen in berichten, pagina's en samenvattingen.</li>
+        <li>Verwijzingen in aangepaste velden en opties, ook in JSON-data van bijvoorbeeld Elementor en in geserialiseerde data.</li>
+        <li>Na afloop worden bekende caches geleegd: Elementor, LiteSpeed, WP Rocket, W3 Total Cache, WP Super Cache en Autoptimize.</li>
+      </ul>
+      <h3>Overgeslagen afbeeldingen</h3>
+      <p>Afbeeldingen waarvan de omzetting niet kleiner uitvalt, of die niet gelezen kunnen worden, worden overgeslagen. Verander je later de kwaliteit, dan kun je ze met <strong>Overgeslagen opnieuw proberen</strong> nogmaals laten verwerken. Met <strong>Stop</strong> onderbreek je de taak. Je kunt hem later gewoon opnieuw starten.</p>
+      <div class="callout">
+        <p><strong>Hoe werkt "op de achtergrond"?</strong>
+        De plugin gebruikt WP-Cron en werkt in porties van ongeveer 20 seconden. Staat WP-Cron uit op jouw site, dan zorgt de geopende instellingenpagina dat de taak doorloopt. Voor grote sites is <a href="#wpcli">WP-CLI</a> de beste keuze.</p>
+      </div>
+      <div class="callout warn">
+        <p><strong>AVIF vraagt veel van je server</strong>
+        Het omzetten naar AVIF is zwaar. Op goedkope hosting kan het geheugen of de uitvoertijd tekortschieten. Begin dan met WebP, of gebruik WP-CLI.</p>
+      </div>
+    </section>
+
+    <section id="terugdraaien">
+      <h2>Terugdraaien</h2>
+      <p>Terugdraaien kan voor afbeeldingen waarvan je het origineel hebt bewaard.</p>
+      <ul>
+        <li><strong>Eén afbeelding:</strong> open de mediabibliotheek in lijstweergave. In de kolom <em>Optimalisatie</em> staat bij elke omgezette afbeelding de besparing, en een link <em>Herstel origineel</em>. In de rasterweergave vind je dezelfde informatie in de details van de afbeelding.</li>
+        <li><strong>Alles tegelijk:</strong> klik op de instellingenpagina op <strong>Herstel alle originelen</strong>.</li>
+      </ul>
+      <p>Bij herstellen komt het originele bestand terug, worden de thumbnails opnieuw gemaakt, worden de verwijzingen in je content teruggezet en worden de WebP- en AVIF-bestanden (ook de AVIF-extra's) verwijderd. Een hersteld bestand wordt niet automatisch opnieuw omgezet.</p>
+    </section>
+
+    <section id="redirects">
+      <h2>Redirects</h2>
+      <p>Na een bulk-conversie bestaan de oude .jpg- en .png-bestanden niet meer, tenzij je het origineel bewaart. Links van buiten je site naar die bestanden, zoals Google Afbeeldingen, andere websites of mails, zouden dan een foutmelding geven.</p>
+      <p>Daarom stuurt de plugin zulke verzoeken door met een permanente (301) doorverwijzing naar de nieuwe afbeelding. Dat behoudt ook je SEO. Dit staat standaard aan en kan in de instellingen uit.</p>
+      <p>Redirects werken alleen als je server verzoeken voor ontbrekende bestanden doorgeeft aan WordPress. Dat is bij de standaardinstellingen van Apache en nginx het geval.</p>
+    </section>
+
+    <section id="statistieken">
+      <h2>Statistieken en dashboard</h2>
+      <p>Bovenaan de instellingenpagina zie je in drie kaarten hoeveel je hebt bespaard (met een ring in procenten), hoeveel afbeeldingen zijn omgezet naar WebP of AVIF, en het totaal vóór en na. In de mediabibliotheek staat per afbeelding de besparing, bijvoorbeeld <code>-86% (712,9 KB → 98,0 KB, WEBP + AVIF)</code>.</p>
+      <p>De cijfers gaan over het hoofdbestand van elke afbeelding. De thumbnails worden ook kleiner, maar die tellen niet mee.</p>
+      <h3>Blok op het dashboard</h3>
+      <p>Op het WordPress-dashboard (het scherm direct na het inloggen) staat een blok <strong>Next-Gen Images</strong>, zichtbaar voor beheerders. Je ziet daar in één oogopslag:</p>
+      <ul>
+        <li>hoeveel je hebt bespaard, in procenten en in MB of GB;</li>
+        <li>het aantal geoptimaliseerde afbeeldingen, het aantal WebP en AVIF en het aantal bewaarde originelen;</li>
+        <li>de voortgang van een lopende conversie, die vanzelf bijwerkt;</li>
+        <li>een melding bij overgeslagen afbeeldingen of problemen met de server;</li>
+        <li>een knop om de conversie te starten of te pauzeren, en een link naar de instellingen.</li>
+      </ul>
+      <p>Zoals elk dashboardblok kun je het verslepen, inklappen of verbergen via <em>Scherminstellingen</em> bovenaan het dashboard.</p>
+      <h3>Serverchecks</h3>
+      <p>Op de instellingenpagina staat rechts een lijst met controles: WebP- en AVIF-ondersteuning, PHP- en WordPress-versie, WP-Cron en de geheugenlimiet. Bovenin de paginakop toont een label <em>Alles werkt</em>, <em>Let op</em> of <em>Niet beschikbaar</em>.</p>
+    </section>
+
+    <section id="wpcli">
+      <h2>WP-CLI</h2>
+      <p>Heb je veel afbeeldingen, of toegang tot de command line? Dan zijn deze commando's de snelste en betrouwbaarste manier:</p>
+<pre><code>wp awo convert [--limit=&lt;aantal&gt;]   # bestaande afbeeldingen omzetten
+wp awo avif [--limit=&lt;aantal&gt;]      # AVIF-extra's maken naast bestaande WebP's
+wp awo restore [--limit=&lt;aantal&gt;]   # bewaarde originelen terugzetten
+wp awo stats                        # besparing tot nu toe</code></pre>
+      <p>Met <code>--limit</code> verwerk je een beperkt aantal per keer, handig om eerst te testen.</p>
+    </section>
+
+    <section id="updates">
+      <h2>Updates</h2>
+      <p>Next-Gen Images werkt zichzelf bij via GitHub. Nieuwe versies verschijnen onder <strong>Dashboard → Updates</strong> en in de pluginlijst, net als bij plugins uit de officiële plugin-directory. Je kunt met één klik updaten, of in de pluginlijst automatische updates inschakelen.</p>
+      <ul>
+        <li>WordPress controleert zelf regelmatig op een nieuwe versie. De plugin vraagt GitHub hooguit eens per zes uur.</li>
+        <li>Wil je direct controleren? Klik op <strong>Controleer op updates</strong> in de pluginlijst of onderaan de instellingenpagina.</li>
+        <li>Er wordt alleen contact gemaakt met de publieke GitHub-API. Er worden geen gegevens over je site verstuurd.</li>
+        <li>Bij elke update zie je onder <em>Details bekijken</em> wat er is veranderd. Dezelfde tekst staat in de <a href="changelog/">changelog</a>.</li>
+      </ul>
+    </section>
+
+    <section id="problemen">
+      <h2>Veelgestelde vragen</h2>
+      <details>
+        <summary>Er staat dat mijn server geen WebP of AVIF ondersteunt.</summary>
+        <p>Je server mist Imagick of GD met WebP-ondersteuning. Vraag je hoster dit in te schakelen. Voor AVIF is bovendien WordPress 6.5 of nieuwer nodig, en op GD ook PHP 8.1 of nieuwer.</p>
+      </details>
+      <details>
+        <summary>Ik koos AVIF, maar er komt WebP uit.</summary>
+        <p>Dan ondersteunt je server of je WordPress-versie AVIF niet. Op de instellingenpagina staat in dat geval een waarschuwing. De plugin valt dan automatisch terug op WebP, zodat uploads niet mislukken.</p>
+      </details>
+      <details>
+        <summary>Een afbeelding is niet omgezet.</summary>
+        <p>Dat gebeurt als het resultaat niet kleiner is dan het origineel, bijvoorbeeld bij een al sterk gecomprimeerd bestand, of als het bestand niet gelezen kan worden. De afbeelding blijft dan zoals hij was. Na een wijziging van de kwaliteit kun je hem opnieuw laten proberen.</p>
+      </details>
+      <details>
+        <summary>De conversie lijkt vast te zitten.</summary>
+        <p>Staat WP-Cron uit op je site, dan loopt de taak alleen door zolang de instellingenpagina openstaat. Open de pagina opnieuw, of gebruik <code>wp awo convert</code>. Gaat het geheugen of de uitvoertijd op, dan helpt het om eerst WebP te gebruiken en de kwaliteit of maximale afmeting te verlagen.</p>
+      </details>
+      <details>
+        <summary>Mijn afbeeldingen zien er na de conversie nog hetzelfde uit op de site.</summary>
+        <p>Leeg je cache, bij je cachingplugin, je CDN en je browser. De plugin leegt bekende cachingplugins na een bulk-conversie, maar niet elke CDN.</p>
+      </details>
+      <details>
+        <summary>Werkt het met Elementor en andere paginabouwers?</summary>
+        <p>Ja. Verwijzingen in de opgeslagen data van paginabouwers worden meegenomen, ook in JSON. Verwijzingen die in een PHP-object zijn opgeslagen worden bewust met rust gelaten om data niet te beschadigen. Controleer na een bulk-conversie dus even je belangrijkste pagina's, zoals de header, het logo en sliders.</p>
+      </details>
+      <details>
+        <summary>Ondersteunen alle browsers WebP en AVIF?</summary>
+        <p>WebP wordt door alle gangbare browsers ondersteund. AVIF ook door de huidige versies van de grote browsers, maar niet door heel oude. Kies je alleen AVIF, dan zien bezoekers met zo'n oude browser de afbeelding niet. Met <a href="#avif">AVIF + WebP</a> krijgen zij gewoon de WebP.</p>
+      </details>
+      <details>
+        <summary>Ik koos AVIF + WebP, maar zie geen &lt;picture&gt; op mijn site.</summary>
+        <p>Controleer of er AVIF-bestanden bestaan: zie het getal <em>met AVIF-extra</em> op de instellingenpagina, en start zo nodig <strong>Maak AVIF-extra's</strong>. Alleen afbeeldingen waarvoor alle gebruikte bestanden een AVIF hebben worden omgezet. Staat er een cachingplugin op, leeg dan de cache. Is <code>ngi_picture_output</code> uitgezet in je thema, dan blijft de uitvoer ook ongewijzigd.</p>
+      </details>
+    </section>
+
+    <section id="verwijderen">
+      <h2>Verwijderen</h2>
+      <p>Deactiveren laat alles staan. Verwijder je de plugin helemaal, dan worden instellingen, statistieken, de koppeling met bewaarde originelen en de redirects gewist. Bewaarde originele bestanden en AVIF-extra's blijven in je uploads-map staan, maar kunnen daarna niet meer automatisch worden hersteld of opgeruimd. Haal dus eerst zo nodig je originelen terug en gebruik <strong>AVIF-extra's verwijderen</strong> als je die niet wilt houden.</p>
+    </section>
+
+    <footer class="site">
+      <span>Gemaakt door</span>
+      <a href="https://www.stryv.nl" aria-label="STRYV"><img class="logo" src="../assets/stryv-logo.svg" alt="STRYV"></a>
+      <span>&middot; <a href="https://www.stryv.nl">www.stryv.nl</a> &middot; GPL-2.0-or-later</span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

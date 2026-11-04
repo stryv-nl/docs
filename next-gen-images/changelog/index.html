@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Next-Gen Images: changelog</title>
+<meta name="description" content="Alle versies van Next-Gen Images, de WordPress-plugin van STRYV, met wat er per versie is veranderd.">
+<style>
+:root {
+  --bg: #ffffff;
+  --surface: #f7f6ec;
+  --text: #0c0c0c;
+  --muted: #5b5b58;
+  --line: #dcdac6;
+  --accent: #0c0c0c;
+  --accent-text: #ffffff;
+  --note-bg: #f7f6ec;
+  --warn-bg: #fff6e0;
+  --warn-line: #e8c46a;
+  --code-bg: #eeecda;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111;
+    --surface: #1b1b1a;
+    --text: #f2f2f0;
+    --muted: #a3a39e;
+    --line: #2e2e2c;
+    --accent: #f2f2f0;
+    --accent-text: #111111;
+    --note-bg: #1b1b1a;
+    --warn-bg: #2a2310;
+    --warn-line: #7a6320;
+    --code-bg: #1f1f1d;
+  }
+  :root:not([data-theme="light"]) .logo { filter: invert(1); }
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 17px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+
+.layout { max-width: 1120px; margin: 0 auto; padding: 0 16px; display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 56px; }
+@media (max-width: 860px) { .layout { grid-template-columns: 1fr; gap: 0; } }
+
+nav.toc { position: sticky; top: 0; align-self: start; padding: 32px 0; max-height: 100vh; overflow-y: auto; }
+nav.toc .logo { height: 16px; width: auto; display: block; margin-bottom: 28px; }
+nav.toc ol { list-style: none; margin: 0; padding: 0; font-size: 15px; }
+nav.toc li { margin: 0; }
+nav.toc a { display: block; padding: 5px 0; color: var(--muted); text-decoration: none; }
+nav.toc a:hover { color: var(--text); }
+@media (max-width: 860px) {
+  nav.toc { position: static; padding: 24px 0 8px; max-height: none; }
+  nav.toc ol { columns: 2; column-gap: 24px; }
+}
+
+main { padding: 32px 0 80px; min-width: 0; }
+header.hero { padding: 24px 0 36px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+.eyebrow { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 16px; }
+.lead { font-size: 20px; color: var(--muted); margin: 0 0 24px; max-width: 38em; }
+.buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-block; padding: 11px 20px; border-radius: 8px; border: 1px solid var(--accent); text-decoration: none; font-weight: 600; font-size: 16px; }
+.btn.primary { background: var(--accent); color: var(--accent-text); }
+.btn.primary:hover { opacity: .88; }
+.btn.ghost:hover { background: var(--surface); }
+
+section { margin: 0 0 56px; }
+h2 { font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; margin: 0 0 16px; }
+h3 { font-size: 19px; margin: 28px 0 8px; }
+p { margin: 0 0 16px; max-width: 42em; }
+ul, ol.steps { margin: 0 0 16px; padding-left: 1.3em; max-width: 42em; }
+li { margin: 0 0 6px; }
+code { font: 0.9em ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--code-bg); padding: 2px 6px; border-radius: 5px; }
+pre { background: var(--code-bg); padding: 16px 18px; border-radius: 10px; overflow-x: auto; margin: 0 0 16px; font-size: 15px; line-height: 1.5; }
+pre code { background: none; padding: 0; }
+
+.callout { background: var(--note-bg); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; margin: 0 0 20px; max-width: 42em; }
+.callout.warn { background: var(--warn-bg); border-color: var(--warn-line); }
+.callout p:last-child { margin-bottom: 0; }
+.callout strong:first-child { display: block; margin-bottom: 2px; }
+
+.table-wrap { overflow-x: auto; margin: 0 0 20px; }
+table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 16px; }
+th, td { text-align: left; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+
+details { border-bottom: 1px solid var(--line); padding: 14px 0; max-width: 42em; }
+details summary { cursor: pointer; font-weight: 600; list-style: none; }
+details summary::-webkit-details-marker { display: none; }
+details summary::after { content: "+"; float: right; color: var(--muted); font-weight: 400; }
+details[open] summary::after { content: "−"; }
+details p { margin: 10px 0 0; }
+
+footer.site { border-top: 1px solid var(--line); padding: 28px 0 0; color: var(--muted); font-size: 15px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+footer.site .logo { height: 13px; width: auto; }
+
+.wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 80px; }
+.wrap .logo { height: 16px; width: auto; display: block; margin-bottom: 36px; }
+.date { color: var(--muted); font-size: 15px; margin: -8px 0 12px; }
+.tag { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; background: var(--accent); color: var(--accent-text); border-radius: 999px; padding: 3px 10px; vertical-align: middle; margin-left: 8px; font-weight: 600; }
+.back { display: inline-block; margin: 0 0 20px; color: var(--muted); text-decoration: none; font-size: 15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a href="https://www.stryv.nl" aria-label="STRYV"><img class="logo" src="../../assets/stryv-logo.svg" alt="STRYV"></a>
+  <a class="back" href="../">&larr; Handleiding</a>
+  <header class="hero">
+    <p class="eyebrow">Changelog</p>
+    <h1>Next-Gen Images</h1>
+    <p class="lead">Wat er per versie is veranderd. Updates krijg je automatisch in WordPress onder Dashboard &rarr; Updates.</p>
+  </header>
+<section id="v1.6.4"><h2>Versie 1.6.4 <span class="tag">Nieuwste</span></h2><p class="date">4 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.6.4">Download</a></p><ul><li>Ronde STRYV-logo als menu-icoon en pluginicoon in het updatescherm. Ronde en vierkante logo's staan in <code>assets/</code>.</li></ul></section>
+<section id="v1.6.3"><h2>Versie 1.6.3</h2><p class="date">4 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.6.3">Download</a></p><ul><li>Zachte vlakken (chips, icoonvlakken, geselecteerde tegel, uitgeschakelde knoppen) in STRYV-kleur #EEECDA; lijnen, sporen en tekstkleuren warm meegenomen. Hero blijft zwart, OK/waarschuwing/fout ongewijzigd.</li></ul></section>
+<section id="v1.6.2"><h2>Versie 1.6.2</h2><p class="date">4 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.6.2">Download</a></p><ul><li>Koppen in Calimate in zes gewichten: paginatitel Black, kaarttitels Extra Bold, keuzetegels en WP-CLI Bold, instellingstitels Semi Bold, waarschuwingskoppen Medium.</li></ul></section>
+<section id="v1.6.1"><h2>Versie 1.6.1</h2><p class="date">4 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.6.1">Download</a></p><ul><li>Koppen op de instellingenpagina in het lettertype Calimate.</li></ul></section>
+<section id="v1.6.0"><h2>Versie 1.6.0</h2><p class="date">4 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.6.0">Download</a></p><ul><li>Nieuw formaat "AVIF + WebP": WebP blijft het hoofdbestand en er komt een AVIF naast. De voorkant levert via <code>&lt;picture&gt;</code> de AVIF aan browsers die dat kunnen en de WebP aan de rest.</li><li>Nieuwe knop "Maak AVIF-extra's" en <code>wp awo avif</code> voor bestaande WebP-afbeeldingen, en "AVIF-extra's verwijderen" om op te ruimen.</li><li>Volledig nieuwe instellingenpagina: donkere kop met logo, statistiekkaarten, formaattegels, schuifbalken voor kwaliteit, keuzes voor de maximale afmeting, schakelaars, voortgangskaart, updatekaart en serverchecks.</li><li>Nieuw blok op het WordPress-dashboard met besparing, aantallen, voortgang en een start-/pauzeknop.</li><li>Statistieken tonen nu ook het aantal per formaat en het aantal bewaarde originelen.</li><li>Handleiding bijgewerkt.</li></ul></section>
+<section id="v1.5.0"><h2>Versie 1.5.0</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.5.0">Download</a></p><ul><li>Updates via GitHub: nieuwe versies verschijnen in het WordPress-updatescherm en kunnen met één klik of automatisch worden geïnstalleerd.</li><li>Link "Controleer op updates" en "Handleiding" in de pluginlijst en op de instellingenpagina.</li><li>Handleiding op GitHub Pages.</li></ul></section>
+<section id="v1.4.1"><h2>Versie 1.4.1</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.4.1">Download</a></p><ul><li>Opgelost: de plugin startte niet door een controle op de oude versie. De klassen heten nu <code>NGI_Plugin</code> en <code>NGI_CLI</code>.</li></ul></section>
+<section id="v1.4.0"><h2>Versie 1.4.0</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.4.0">Download</a></p><ul><li>Nieuwe naam: Next-Gen Images. Map en bestand heten nu <code>next-gen-images</code>.</li><li>Instellingen, statistieken, bewaarde originelen en redirects van de oude versie blijven behouden.</li></ul></section>
+<section id="v1.3.0"><h2>Versie 1.3.0</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.3.0">Download</a></p><ul><li>Eigen menu-item in het beheermenu met het icoon "Afbeeldingen".</li><li>STRYV-woordmerk onderaan de instellingenpagina.</li></ul></section>
+<section id="v1.2.0"><h2>Versie 1.2.0</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.2.0">Download</a></p><ul><li>AVIF naast WebP, met aparte kwaliteitsinstelling.</li><li>Redirects van oude <code>.jpg</code>/<code>.png</code>-links naar de nieuwe afbeelding.</li><li>Bulk-conversie op de achtergrond (WP-Cron), plus WP-CLI-commando's.</li><li>Terugdraaien naar het bewaarde origineel, per afbeelding of alles tegelijk.</li><li>Statistieken op de instellingenpagina en in de mediabibliotheek.</li></ul></section>
+<section id="v1.1.0"><h2>Versie 1.1.0</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.1.0">Download</a></p><ul><li>Optie om het origineel te bewaren.</li><li>Bulk-conversie van bestaande afbeeldingen, inclusief het bijwerken van verwijzingen in de database.</li></ul></section>
+<section id="v1.0.0"><h2>Versie 1.0.0</h2><p class="date">3 november 2026 · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v1.0.0">Download</a></p><ul><li>Eerste versie: nieuwe JPEG/PNG-uploads automatisch naar WebP, met kwaliteit en maximale afmeting.</li></ul></section>
+
+  <footer class="site">
+    <span>Gemaakt door</span>
+    <a href="https://www.stryv.nl" aria-label="STRYV"><img class="logo" src="../../assets/stryv-logo.svg" alt="STRYV"></a>
+    <span>&middot; <a href="https://www.stryv.nl">www.stryv.nl</a></span>
+  </footer>
+</div>
+</body>
+</html>
