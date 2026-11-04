@@ -1,14 +1,22 @@
 #!/usr/bin/env python3
-"""Maakt next-gen-images/changelog/index.html uit CHANGELOG.md van de pluginrepo.
+"""Maakt <plugin>/changelog/index.html uit CHANGELOG.md van de pluginrepo.
 
-Gebruik: python3 scripts/changelog.py [pad/naar/CHANGELOG.md]
+Gebruik: python3 scripts/changelog.py [plugin] [pad/naar/CHANGELOG.md]
+  plugin  next-gen-images (standaard) of rankpilot-pro
 Standaard wordt de laatste versie van GitHub (main) opgehaald.
 """
 import html, re, sys, urllib.request, pathlib
 
-URL = 'https://raw.githubusercontent.com/stryv-nl/wp-next-gen-images/main/CHANGELOG.md'
+PLUGINS = {
+    'next-gen-images': {'repo': 'wp-next-gen-images', 'tpl': 'changelog.tpl.html'},
+    'rankpilot-pro': {'repo': 'wp-rankpilot-pro', 'tpl': 'changelog.rankpilot-pro.tpl.html'},
+}
+args = sys.argv[1:]
+plugin = args.pop(0) if args and args[0] in PLUGINS else 'next-gen-images'
+conf = PLUGINS[plugin]
+URL = f'https://raw.githubusercontent.com/stryv-nl/{conf["repo"]}/main/CHANGELOG.md'
 root = pathlib.Path(__file__).resolve().parent.parent
-src = pathlib.Path(sys.argv[1]).read_text(encoding='utf-8') if len(sys.argv) > 1 else urllib.request.urlopen(URL).read().decode('utf-8')
+src = pathlib.Path(args[0]).read_text(encoding='utf-8') if args else urllib.request.urlopen(URL).read().decode('utf-8')
 
 def inline(t):
     t = html.escape(t, quote=False)
@@ -34,9 +42,9 @@ for i, r in enumerate(releases):
     lis = ''.join(f'<li>{inline(x)}</li>' for x in r['items'])
     tag = ' <span class="tag">Nieuwste</span>' if i == 0 else ''
     body += (f'<section id="v{r["v"]}"><h2>Versie {r["v"]}{tag}</h2>'
-             f'<p class="date">{nl(r["d"])} · <a href="https://github.com/stryv-nl/wp-next-gen-images/releases/tag/v{r["v"]}">Download</a></p><ul>{lis}</ul></section>\n')
+             f'<p class="date">{nl(r["d"])} · <a href="https://github.com/stryv-nl/{conf["repo"]}/releases/tag/v{r["v"]}">Download</a></p><ul>{lis}</ul></section>\n')
 
-tpl = (root / 'scripts' / 'changelog.tpl.html').read_text(encoding='utf-8')
-out = root / 'next-gen-images' / 'changelog' / 'index.html'
+tpl = (root / 'scripts' / conf['tpl']).read_text(encoding='utf-8')
+out = root / plugin / 'changelog' / 'index.html'
 out.write_text(tpl.replace('{{RELEASES}}', body), encoding='utf-8')
 print(f'{len(releases)} versies geschreven naar {out}')

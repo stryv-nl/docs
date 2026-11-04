@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RankPilot Pro: handleiding</title>
+<meta name="description" content="Handleiding voor RankPilot Pro, de WordPress-plugin van STRYV met alle SEO-functies van Yoast SEO Premium en een laag voor vindbaarheid in ChatGPT, Perplexity, Gemini en Claude.">
+<link rel="stylesheet" href="../assets/stryv-ds.css">
+</head>
+<body>
+<div class="layout">
+
+  <nav class="toc" aria-label="Inhoud">
+    <a href="https://www.stryv.nl" aria-label="STRYV"><img class="logo" src="../assets/stryv-logo.svg" alt="STRYV"></a>
+    <ol>
+      <li><a href="#wat">Wat het doet</a></li>
+      <li><a href="#installeren">Installeren</a></li>
+      <li><a href="#starten">Eerste keer instellen</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+      <li><a href="#dashboardblok">Blok in het WP-dashboard</a></li>
+      <li><a href="#lijst">Stoplichten in de lijst</a></li>
+      <li><a href="#editor">In de editor</a></li>
+      <li><a href="#instellingen">Instellingen</a></li>
+      <li><a href="#ai">AI-zichtbaarheid</a></li>
+      <li><a href="#redirects">Redirects</a></li>
+      <li><a href="#inzichten">Inzichten</a></li>
+      <li><a href="#tools">Importeren en tools</a></li>
+      <li><a href="#updates">Updates</a></li>
+      <li><a href="#problemen">Veelgestelde vragen</a></li>
+      <li><a href="#verwijderen">Verwijderen</a></li>
+      <li><a href="changelog/">Changelog</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero">
+      <p class="eyebrow">Handleiding</p>
+      <h1>RankPilot Pro<span class="ver">v1.1.0</span></h1>
+      <p class="lead">Alle SEO-functies van Yoast SEO Premium, plus een laag om vindbaar te zijn in ChatGPT, Perplexity, Gemini en Claude.</p>
+      <div class="buttons">
+        <a class="btn primary" href="https://github.com/stryv-nl/wp-rankpilot-pro/releases/latest">Download de plugin</a>
+        <a class="btn" href="https://github.com/stryv-nl/wp-rankpilot-pro">Bekijk op GitHub</a>
+        <a class="btn" href="changelog/">Changelog</a>
+      </div>
+    </header>
+
+    <section id="wat">
+      <h2>Wat het doet</h2>
+      <p>RankPilot Pro helpt je pagina's te vinden in Google én in AI-assistenten. Het doet twee dingen: het regelt de technische kant van SEO, en het laat in de editor en in je lijsten zien wat er beter kan.</p>
+      <div class="cards">
+        <div class="card"><strong>SEO zoals je gewend bent</strong><span>Titels en meta descriptions, focus-keyphrases, schema.org, XML-sitemaps, kruimelpad, redirects met 404-log en interne linksuggesties.</span></div>
+        <div class="card"><strong>Vindbaar in AI</strong><span><code>llms.txt</code>, een Markdown-versie van elke pagina, beheer van 17 AI-crawlers, IndexNow naar Bing en blokken voor kernpunten en FAQ.</span></div>
+        <div class="card"><strong>Stoplichten overal</strong><span>Een SEO-, leesbaarheids- en AI-score in de editor, in de lijst met berichten en in een blok op het WordPress-dashboard.</span></div>
+        <div class="card"><strong>Overstappen zonder gedoe</strong><span>Importeert titels, descriptions, keyphrases en redirects uit Yoast SEO en Rank Math.</span></div>
+      </div>
+      <div class="callout warn">
+        <p><strong>Wat niemand kan beloven</strong>
+        Een vermelding in ChatGPT of Perplexity kan niemand garanderen, want die systemen kiezen zelf hun bronnen. RankPilot Pro zorgt dat je site gelezen mág worden, goed te begrijpen is en makkelijk te citeren is. Het resultaat hangt ook af van de kwaliteit van je inhoud en van vermeldingen op andere sites.</p>
+      </div>
+    </section>
+
+    <section id="installeren">
+      <h2>Installeren</h2>
+      <h3>Vereisten</h3>
+      <ul>
+        <li>WordPress 6.0 of nieuwer.</li>
+        <li>PHP 7.4 of nieuwer. De PHP-extensie DOM is nodig voor de Markdown-versie van pagina's.</li>
+        <li>Mooie permalinks (alles behalve "Eenvoudig"), zodat <code>/sitemap_index.xml</code> en <code>/llms.txt</code> werken.</li>
+      </ul>
+      <h3>Stappen</h3>
+      <ol class="steps">
+        <li>Download <code>rankpilot-pro.zip</code> van de <a href="https://github.com/stryv-nl/wp-rankpilot-pro/releases/latest">laatste release</a>.</li>
+        <li>Ga in WordPress naar <strong>Plugins → Nieuwe plugin → Plugin uploaden</strong> en kies de zip.</li>
+        <li>Klik op <strong>Activeren</strong>.</li>
+        <li>Open <strong>RankPilot Pro</strong> in het beheermenu aan de linkerkant.</li>
+      </ol>
+      <div class="callout warn">
+        <p><strong>Draait er al een andere SEO-plugin?</strong>
+        Zet Yoast SEO of Rank Math nog niet uit. Importeer eerst je gegevens (zie <a href="#tools">Importeren en tools</a>) en zet de andere plugin daarna uit. Anders krijg je dubbele metatags en dubbel schema. RankPilot Pro waarschuwt hiervoor zelf.</p>
+      </div>
+    </section>
+
+    <section id="starten">
+      <h2>Eerste keer instellen</h2>
+      <p>Met deze vijf stappen staat de plugin goed. Reken op een kwartier.</p>
+      <ol class="steps">
+        <li><strong>Importeer je oude gegevens</strong> via RankPilot Pro → Importeren &amp; tools, als je van Yoast of Rank Math komt.</li>
+        <li><strong>Vul je organisatie in</strong> bij Instellingen → Organisatie &amp; profielen. Dit is de belangrijkste stap voor herkenning door Google en AI-modellen.</li>
+        <li><strong>Laat AI-zoekbots toe</strong> bij Instellingen → AI-zichtbaarheid. Zet OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot en Claude-User op <em>Toestaan</em>.</li>
+        <li><strong>Zet IndexNow aan</strong> op dezelfde pagina, zodat Bing (de zoekindex achter ChatGPT Search en Copilot) wijzigingen direct hoort.</li>
+        <li><strong>Reken je scores door</strong> met de knop <em>SEO- en leesscores berekenen</em> op het dashboard, zodat de stoplichten in je lijsten gevuld zijn.</li>
+      </ol>
+    </section>
+
+    <section id="dashboard">
+      <h2>Dashboard</h2>
+      <p>Het dashboard van RankPilot Pro staat onder <strong>RankPilot Pro → Dashboard</strong>. Bovenaan zie je vier cijfers: de AI-zichtbaarheid van je site, het aantal pagina's en berichten, het aantal AI-crawlerbezoeken van de laatste 30 dagen en het aantal actieve redirects.</p>
+      <figure class="shot"><img src="img/dashboard.webp" alt="Het dashboard van RankPilot Pro met vier cijfers, een controlelijst, crawlerstaven en snelle acties" loading="lazy"><figcaption>Het dashboard met de AI-controle, de crawlers van de laatste 30 dagen en de snelle acties.</figcaption></figure>
+      <h3>De AI-controle</h3>
+      <p>Het blok <em>Wat AI-systemen van je site zien</em> controleert onder meer of je site indexeerbaar is (de WordPress-instelling "Zoekmachines ontmoedigen" staat uit), of AI-zoekbots je site mogen lezen, of er een fysiek <code>robots.txt</code> is dat de instellingen van RankPilot Pro blokkeert, of je site op HTTPS draait, of je organisatiegegevens en auteursbiografieën zijn ingevuld, of de sitemap, <code>llms.txt</code> en IndexNow aanstaan en hoeveel pagina's een meta description, kernpunten of een FAQ hebben. Elk punt krijgt <strong>Goed</strong>, <strong>Aandacht</strong> of <strong>Aanvullen</strong>. De ring bovenaan vat het samen, en de melding rechtsboven in de kop telt hoeveel punten aandacht vragen.</p>
+      <h3>AI-crawlers</h3>
+      <p>Hier zie je welke AI-bots je site hebben bezocht en welke pagina's ze het vaakst ophalen. Sites met een paginacache (WP Rocket, LiteSpeed, Cloudflare) tonen alleen bezoeken die de cache missen.</p>
+      <h3>Snelle acties</h3>
+      <ul>
+        <li><strong>Alle pagina's melden aan IndexNow</strong> stuurt je hele site naar Bing. Handig na de eerste installatie.</li>
+        <li><strong>Interne links-index opbouwen</strong> scant je content op links, voor de pagina <a href="#inzichten">Inzichten</a>.</li>
+        <li><strong>SEO- en leesscores berekenen</strong> rekent alle pagina's door die nog geen score hebben.</li>
+      </ul>
+    </section>
+
+    <section id="dashboardblok">
+      <h2>Blok in het WordPress-dashboard</h2>
+      <p>Op het gewone WordPress-dashboard (Dashboard → Startpagina) staat een blok <strong>RankPilot Pro – zichtbaarheid</strong>, bovenaan de linkerkolom. Het geeft in één oogopslag een beeld van je hele site.</p>
+      <figure class="shot"><img src="img/wp-dashboard.webp" alt="Het WordPress-dashboard met het RankPilot Pro-blok: drie scores, een verdelingsbalk en de pagina's met de grootste winst" loading="lazy"><figcaption>Het dashboardblok met de scores, de verdeling en de pagina's die het eerst aandacht verdienen.</figcaption></figure>
+      <ul>
+        <li><strong>Drie scores:</strong> het percentage pagina's met een goede SEO-score, een goede leesbaarheid en een goede AI-zichtbaarheid. Het stoplicht erbij is groen vanaf 70%, oranje vanaf 40% en anders rood.</li>
+        <li><strong>De verdelingsbalk</strong> toont hoeveel pagina's goed, matig of slecht scoren, en hoeveel er nog geen focus-keyphrase hebben.</li>
+        <li><strong>Begin hier</strong> noemt maximaal vier pagina's met de grootste winst, met de belangrijkste reden. Klik door om de pagina te bewerken.</li>
+        <li><strong>AI-crawlers deze week</strong> toont de drie meest actieve bots. Dit deel zien alleen beheerders.</li>
+      </ul>
+      <p>Het blok is te verbergen of te verplaatsen via <em>Schermopties</em> bovenaan het WordPress-dashboard, zoals elk ander blok.</p>
+    </section>
+
+    <section id="lijst">
+      <h2>Stoplichten in de lijst met berichten en pagina's</h2>
+      <p>In Berichten, Pagina's en andere inhoudstypes staan twee extra kolommen: <strong>SEO</strong> en <strong>Leesbaar</strong>. Zo zie je zonder een pagina te openen waar het beter kan.</p>
+      <figure class="shot"><img src="img/lijst.webp" alt="De lijst met berichten met kolommen SEO en Leesbaar met groene, oranje en rode stoplichten" loading="lazy"><figcaption>De kolommen SEO en Leesbaar in de lijst met berichten. Het woord staat naast het licht, dus de kleur is nooit het enige signaal.</figcaption></figure>
+      <div class="tls">
+        <span class="tl g"><i></i>Goed</span><span class="tl o"><i></i>Matig</span><span class="tl r"><i></i>Slecht</span><span class="tl n"><i></i>Geen zoekwoord</span>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Stoplicht</th><th>SEO betekent</th><th>Leesbaar betekent</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tl g"><i></i>Goed</span></td><td>Alle belangrijke punten kloppen: keyphrase in titel, description, intro en URL, en genoeg tekst.</td><td>Makkelijk te lezen (Flesch-Douma-score van 60 of hoger).</td></tr>
+          <tr><td><span class="tl o"><i></i>Matig</span></td><td>Niets ontbreekt, maar er zijn meerdere verbeterpunten.</td><td>Redelijk leesbaar (score 50 tot 60). Kortere zinnen en woorden helpen.</td></tr>
+          <tr><td><span class="tl r"><i></i>Slecht</span></td><td>Een belangrijk punt ontbreekt: de keyphrase staat niet in de titel, er is geen meta description of de tekst is erg kort.</td><td>Moeilijk te lezen (score onder 50).</td></tr>
+          <tr><td><span class="tl n"><i></i>Geen zoekwoord</span></td><td>Er is nog geen focus-keyphrase ingesteld. Zonder zoekwoord kan er geen SEO-score zijn.</td><td>Nog niet berekend of te weinig tekst (minder dan 30 woorden).</td></tr>
+        </tbody>
+      </table></div>
+      <h3>Filteren en sorteren</h3>
+      <p>Boven de lijst staan twee uitklappers, <em>Alle SEO-scores</em> en <em>Alle leesbaarheidsscores</em>. Kies bijvoorbeeld <em>Slecht</em> en klik op <strong>Filter</strong> om alleen de rode pagina's te zien. Klik op de kolomkop <strong>SEO</strong> of <strong>Leesbaar</strong> om te sorteren, met de slechtste of de beste bovenaan. Beweeg met de muis over een stoplicht voor de belangrijkste reden.</p>
+      <h3>Waar komen de scores vandaan?</h3>
+      <p>De scores worden bewaard bij elke pagina. Open je een pagina in de editor, dan rekent de editor live en slaat de score bij het opslaan op. Voor pagina's die je niet hebt geopend (bijvoorbeeld na een import) berekent RankPilot Pro een eerste score bij het opslaan, of via de knop <em>SEO- en leesscores berekenen</em> op het dashboard.</p>
+      <div class="callout">
+        <p><strong>Let op</strong>
+        De berekening buiten de editor is bewust eenvoudiger dan de live analyse in de editor. De score in de editor is leidend: zodra je een pagina daar opslaat, geldt die.</p>
+      </div>
+    </section>
+
+    <section id="editor">
+      <h2>In de editor</h2>
+      <p>Onder elke pagina en elk bericht staat het blok <strong>RankPilot Pro</strong> met zes tabbladen. Bij SEO, Leesbaarheid en AI-zichtbaarheid staat een stoplicht dat live meebeweegt terwijl je schrijft. Dit werkt in de blok-editor en in de klassieke editor.</p>
+      <figure class="shot"><img src="img/metabox-seo.webp" alt="Het tabblad SEO in de editor met keyphrase, zoekresultaat-voorbeeld, SEO-titel, meta description en analyse" loading="lazy"><figcaption>Het tabblad SEO.</figcaption></figure>
+
+      <h3>SEO</h3>
+      <ol class="steps">
+        <li><strong>Vul je focus-keyphrase in:</strong> waarop wil je gevonden worden? Een knop stelt er desgewenst voor je voor. Je kunt tot vier gerelateerde keyphrases toevoegen.</li>
+        <li><strong>Controleer het voorbeeld in zoekresultaten</strong> (zie hieronder).</li>
+        <li><strong>Pas de SEO-titel en meta description aan.</strong> De balkjes eronder worden groen als de lengte goed is. Laat je ze leeg, dan gebruikt RankPilot Pro de sjablonen uit de instellingen.</li>
+        <li><strong>Loop de SEO-analyse langs.</strong> De rode en oranje punten staan bovenaan, met uitleg wat je kunt doen.</li>
+        <li><strong>Gebruik de linksuggesties</strong> onderaan voor relevante pagina's om naar te linken. Cornerstone-content staat bovenaan.</li>
+      </ol>
+
+      <h3>Voorbeeld in zoekresultaten</h3>
+      <p>Het voorbeeld ziet eruit zoals een resultaat in Google: het ronde pictogram en de sitenaam, de URL als kruimelpad, een blauwe titel, de datum met de beschrijving en rechts een miniatuur. De miniatuur is de afbeelding die Google zou tonen: de <strong>uitgelichte afbeelding</strong>, anders de eerste afbeelding in de tekst, anders de standaardafbeelding uit de instellingen. Kies je een andere uitgelichte afbeelding, dan past het voorbeeld zich aan.</p>
+      <figure class="shot"><img src="img/serp-computer.webp" alt="Voorbeeld van een Google-zoekresultaat met titel, beschrijving en miniatuur" loading="lazy"><figcaption>De weergave voor <strong>Computer</strong>.</figcaption></figure>
+      <figure class="shot tiny"><img src="img/serp-mobiel.webp" alt="Mobiel voorbeeld van een Google-zoekresultaat" loading="lazy"><figcaption>De weergave voor <strong>Mobiel</strong>: smaller, met een kleinere miniatuur.</figcaption></figure>
+      <div class="callout">
+        <p><strong>Google beslist</strong>
+        Het voorbeeld laat zien wat Google op basis van jouw gegevens waarschijnlijk toont. Google bepaalt zelf of het een afbeelding, een andere titel of een andere beschrijving gebruikt.</p>
+      </div>
+
+      <h3>Leesbaarheid</h3>
+      <p>Toont de Flesch-Douma-leesscore, het aantal woorden en zinnen, en controles op lange zinnen, passieve zinnen, overgangswoorden en lange alinea's.</p>
+      <figure class="shot small"><img src="img/metabox-read.webp" alt="Het tabblad Leesbaarheid met de leesscore en de controles" loading="lazy"><figcaption>Het tabblad Leesbaarheid.</figcaption></figure>
+
+      <h3>AI-zichtbaarheid</h3>
+      <p>Een score van 0 tot 100 voor hoe goed ChatGPT, Perplexity, Gemini en Claude deze pagina kunnen begrijpen en citeren. De controles kijken onder meer naar een snel antwoord in de eerste alinea, vraag-koppen, concrete cijfers, alt-teksten, een auteursbiografie en actualiteit. Onderaan vul je <strong>kernpunten</strong>, een <strong>FAQ</strong> en een <strong>stappenplan</strong> in. Die komen als zichtbaar blok op de pagina en als schema.org-gegevens. Met de knoppen met een ster laat een AI ze voor je genereren (zie <a href="#ai">AI-zichtbaarheid</a>).</p>
+      <figure class="shot"><img src="img/metabox-ai.webp" alt="Het tabblad AI-zichtbaarheid met een score van 79, controles en invoer voor kernpunten, FAQ en stappenplan" loading="lazy"><figcaption>Het tabblad AI-zichtbaarheid.</figcaption></figure>
+
+      <h3>Social</h3>
+      <p>Bepaal hoe de pagina eruitziet als je hem deelt op Facebook, LinkedIn of X: een eigen titel, beschrijving en afbeelding. Laat je ze leeg, dan worden de SEO-gegevens en de uitgelichte afbeelding gebruikt.</p>
+      <figure class="shot small"><img src="img/metabox-social.webp" alt="Het tabblad Social met velden voor titel, beschrijving en afbeelding" loading="lazy"></figure>
+
+      <h3>Schema en Geavanceerd</h3>
+      <p><strong>Schema</strong> bepaalt het paginatype (bijvoorbeeld Over ons, Contact of FAQ) en het artikeltype (Article, BlogPosting of NewsArticle). Het schema voor auteur, uitgever en datums voegt RankPilot Pro automatisch toe. Onder <strong>Geavanceerd</strong> stel je per pagina in of hij in zoekresultaten mag staan (noindex), of links gevolgd mogen worden, wat de canonical URL is en welke primaire categorie geldt. Hier markeer je ook je belangrijkste pagina's als <strong>cornerstone</strong>.</p>
+      <figure class="shot small"><img src="img/metabox-schema.webp" alt="Het tabblad Schema met paginatype en artikeltype" loading="lazy"></figure>
+      <figure class="shot small"><img src="img/metabox-adv.webp" alt="Het tabblad Geavanceerd met indexering, canonical en primaire categorie" loading="lazy"></figure>
+    </section>
+
+    <section id="instellingen">
+      <h2>Instellingen</h2>
+      <p>Alle instellingen staan onder <strong>RankPilot Pro → Instellingen</strong>, verdeeld over tabbladen. Wijzigingen gaan direct in na het opslaan.</p>
+
+      <h3>Algemeen</h3>
+      <p>De websitenaam voor in titels en schema, het scheidingsteken in titels en de verificatiecodes voor Google Search Console, Bing Webmaster Tools, Yandex en Pinterest. Verifieer je site ook bij Bing: Bing voedt ChatGPT Search en Copilot.</p>
+      <figure class="shot"><img src="img/settings-algemeen.webp" alt="Het tabblad Algemeen van de instellingen" loading="lazy"></figure>
+
+      <h3>Organisatie &amp; profielen</h3>
+      <p>Vertel wie je bent. Kies of de site van een bedrijf of een persoon is, of van een lokaal bedrijf met een vestiging of werkgebied. Vul naam, omschrijving, logo, contactgegevens, adres, openingstijden en je profielen op social media in. Hier maken zoekmachines en AI-modellen hun beeld van je op. Schrijf de omschrijving in twee zinnen: wie ben je, wat doe je en voor wie.</p>
+      <figure class="shot"><img src="img/settings-org.webp" alt="Het tabblad Organisatie en profielen" loading="lazy"></figure>
+
+      <h3>Titels &amp; metas</h3>
+      <p>Sjablonen voor de titel en description van de startpagina, elk inhoudstype, de archieven en de taxonomieën, plus de keuze of iets in zoekresultaten en in de sitemap hoort. In de sjablonen gebruik je variabelen:</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Variabele</th><th>Wat je krijgt</th></tr></thead>
+        <tbody>
+          <tr><td><code>%%title%%</code></td><td>De titel van de pagina</td></tr>
+          <tr><td><code>%%sitename%%</code>, <code>%%sitedesc%%</code></td><td>De websitenaam en de slogan</td></tr>
+          <tr><td><code>%%sep%%</code></td><td>Het gekozen scheidingsteken</td></tr>
+          <tr><td><code>%%excerpt%%</code></td><td>Het uittreksel of een automatische samenvatting</td></tr>
+          <tr><td><code>%%focuskw%%</code></td><td>De focus-keyphrase</td></tr>
+          <tr><td><code>%%date%%</code>, <code>%%modified%%</code>, <code>%%currentyear%%</code></td><td>Publicatiedatum, wijzigingsdatum en het huidige jaar</td></tr>
+          <tr><td><code>%%category%%</code>, <code>%%primary_category%%</code>, <code>%%tag%%</code></td><td>Categorieën en tags</td></tr>
+          <tr><td><code>%%page%%</code></td><td>Paginanummer bij gepagineerde content</td></tr>
+          <tr><td><code>%%name%%</code>, <code>%%term_title%%</code>, <code>%%term_description%%</code></td><td>Auteursnaam en gegevens van een term</td></tr>
+          <tr><td><code>%%pt_single%%</code>, <code>%%pt_plural%%</code>, <code>%%searchphrase%%</code></td><td>Naam van het inhoudstype en de zoekopdracht</td></tr>
+          <tr><td><code>%%cf_veldnaam%%</code></td><td>De waarde van een eigen veld</td></tr>
+        </tbody>
+      </table></div>
+      <figure class="shot"><img src="img/settings-titels.webp" alt="Het tabblad Titels en metas met sjablonen" loading="lazy"></figure>
+
+      <h3>Social</h3>
+      <p>De standaardafbeelding voor delen en voor het zoekresultaat als een pagina zelf geen afbeelding heeft, het kaarttype voor X, de gebruikersnaam van de site op X en een Facebook App ID.</p>
+
+      <h3>Sitemap</h3>
+      <p>De XML-sitemap staat op <code>/sitemap_index.xml</code>. Je kiest of afbeeldingen en een auteurs-sitemap worden opgenomen, hoeveel URL's er in een sitemap mogen staan en welke pagina's je uitsluit. Dien deze sitemap in bij Google Search Console en Bing Webmaster Tools.</p>
+      <figure class="shot"><img src="img/settings-sitemap.webp" alt="Het tabblad Sitemap" loading="lazy"></figure>
+
+      <h3>Kruimelpad</h3>
+      <p>Plaats <code>[rankpilot_breadcrumbs]</code> in je content, of <code>&lt;?php rankpilot_breadcrumbs(); ?&gt;</code> in je thema. Thema's die <code>yoast_breadcrumb()</code> aanroepen werken direct. Je stelt de tekst voor de startpagina, het scheidingsteken en een voorvoegsel zoals "Je bent hier:" in. Het schema voor het kruimelpad wordt altijd toegevoegd.</p>
+
+      <h3>Geavanceerd</h3>
+      <p>Automatisch een 301-redirect maken als je een URL wijzigt, 404-fouten bijhouden, de head opschonen, bijlagepagina's doorsturen, gepagineerde archieven op noindex zetten, een <code>Last-Modified</code>-header sturen en tekst onder RSS-items zetten.</p>
+    </section>
+
+    <section id="ai">
+      <h2>AI-zichtbaarheid</h2>
+      <p>Het tabblad <strong>AI-zichtbaarheid</strong> bij de instellingen bevat alles voor vindbaarheid in AI-assistenten.</p>
+      <figure class="shot"><img src="img/settings-ai.webp" alt="Het tabblad AI-zichtbaarheid met llms.txt, Markdown, crawlers, IndexNow en de AI-generator" loading="lazy"></figure>
+
+      <h3>llms.txt</h3>
+      <p>Een leesbare samenvatting van je site voor AI-systemen, op <code>/llms.txt</code>. Optioneel komt er ook <code>/llms-full.txt</code> met alle inhoud als Markdown. Je kiest de titel, een samenvatting in twee zinnen, de inhoudstypes en het maximale aantal links per type.</p>
+      <pre><code># Voorbeeld Installatie
+
+&gt; Elektricien voor woningen en bedrijven in de regio.
+
+## Belangrijkste pagina's
+
+- [Diensten](https://voorbeeld-installatie.nl/diensten/): groepenkast, laadpaal</code></pre>
+
+      <h3>Markdown per pagina</h3>
+      <p>Voeg <code>?format=md</code> toe aan een URL voor een schone tekstversie zonder opmaak, bijvoorbeeld <code>https://jouwsite.nl/kennis/groepenkast-vervangen/?format=md</code>. De Markdown-versie wordt aangekondigd in de head en staat zelf op noindex.</p>
+
+      <h3>Kernpunten, FAQ en datum</h3>
+      <p>Bepaal of kernpunten bovenaan of onderaan het artikel staan, of de FAQ onderaan staat en of een zichtbare datum <em>Laatst bijgewerkt</em> verschijnt. Het FAQ-schema wordt altijd toegevoegd. Wil je de blokken zelf plaatsen? Gebruik de shortcodes <code>[rankpilot_takeaways]</code> en <code>[rankpilot_faq]</code>.</p>
+
+      <h3>AI-crawlers in robots.txt</h3>
+      <p>Kies per crawler wat er in <code>robots.txt</code> komt: <strong>Standaard</strong> (niets toevoegen), <strong>Toestaan</strong> of <strong>Blokkeren</strong>. Er is keuze uit 17 crawlers, waaronder OpenAI, Anthropic, Perplexity, Google-Extended, Bingbot en Meta.</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Soort bot</th><th>Voorbeelden</th><th>Advies</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Zoek- en gebruikersbots</strong></td><td>OAI-SearchBot, ChatGPT-User, PerplexityBot, Claude-SearchBot, Claude-User, Bingbot</td><td>Op <em>Toestaan</em> zetten. Dit bepaalt of je in antwoorden van ChatGPT, Perplexity en Claude kunt voorkomen.</td></tr>
+          <tr><td><strong>Trainingsbots</strong></td><td>GPTBot, ClaudeBot, Google-Extended, CCBot</td><td>Een zakelijke keuze. Ze bepalen alleen of je inhoud voor het trainen van modellen wordt gebruikt.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Met <strong>AI-crawlers loggen</strong> zie je op het dashboard welke bots je site bezoeken.</p>
+
+      <h3>IndexNow</h3>
+      <p>Meldt nieuwe, gewijzigde en verwijderde pagina's direct aan Bing en andere deelnemende zoekmachines. Bing is de zoekindex achter ChatGPT Search en Copilot. Het sleutelbestand staat op <code>/jouw-sleutel.txt</code> en wordt automatisch aangemaakt.</p>
+
+      <h3>AI-generator in de editor</h3>
+      <p>De knoppen met een ster in de editor laten een AI keyphrases, titels, descriptions, kernpunten en een FAQ voorstellen. Kies bij de instellingen de aanbieder (Anthropic of OpenAI), het model, de taal en vul je API-sleutel in.</p>
+      <div class="callout warn">
+        <p><strong>Zet je API-sleutel liever in wp-config.php</strong>
+        Dat is veiliger dan hem in de database te bewaren: <code>define( 'RANKPILOT_API_KEY', 'jouw-sleutel' );</code>. De sleutel wordt alleen gebruikt als je zelf op een generatorknop klikt. De tekst van de pagina gaat dan naar de gekozen aanbieder.</p>
+      </div>
+    </section>
+
+    <section id="redirects">
+      <h2>Redirects</h2>
+      <p>Onder <strong>RankPilot Pro → Redirects</strong> beheer je doorverwijzingen en zie je welke pagina's niet bestaan.</p>
+      <figure class="shot"><img src="img/redirects.webp" alt="De pagina Redirects met een formulier en een lijst actieve redirects" loading="lazy"></figure>
+      <ol class="steps">
+        <li>Vul bij <strong>Van</strong> het oude pad in, bijvoorbeeld <code>/oude-pagina/</code>.</li>
+        <li>Vul bij <strong>Naar</strong> het nieuwe pad of een volledige URL in.</li>
+        <li>Kies het <strong>type</strong>: 301 (permanent), 302 of 307 (tijdelijk), 308 (permanent, methode behouden), 410 (verwijderd) of 451 (juridisch niet beschikbaar). Bij 410 en 451 is geen doel nodig.</li>
+        <li>Klik op <strong>Toevoegen</strong>.</li>
+      </ol>
+      <p>Met <em>Reguliere expressie</em> redirect je hele groepen. Van <code>^blog/(.*)$</code> naar <code>/nieuws/$1</code> stuurt <code>/blog/iets/</code> door naar <code>/nieuws/iets/</code>. Via de knoppen onderaan importeer en exporteer je redirects als CSV (kolommen <code>origin,target,type,regex</code>). Wijzig je de URL van een bericht, pagina of term, dan maakt RankPilot Pro automatisch een 301 aan.</p>
+      <h3>404-fouten</h3>
+      <p>Het tabblad <strong>404-fouten</strong> toont welke niet-bestaande URL's bezocht zijn, hoe vaak, wanneer en vanaf waar. Met <strong>Redirect maken</strong> zet je er in één klik een doorverwijzing van.</p>
+      <figure class="shot"><img src="img/redirects-404.webp" alt="Het tabblad 404-fouten met veelvoorkomende niet-bestaande URL's" loading="lazy"></figure>
+    </section>
+
+    <section id="inzichten">
+      <h2>Inzichten</h2>
+      <p>Onder <strong>RankPilot Pro → Inzichten</strong> zie je hoe je pagina's naar elkaar linken. Interne links helpen zoekmachines en AI-crawlers je pagina's te vinden.</p>
+      <figure class="shot"><img src="img/insights.webp" alt="De pagina Inzichten met verweesde content en cornerstone-pagina's met weinig links" loading="lazy"></figure>
+      <ul>
+        <li><strong>Links-index:</strong> klik op <em>Index opbouwen</em> om je bestaande content te scannen.</li>
+        <li><strong>Cornerstone-content met weinig links:</strong> je belangrijkste pagina's die te weinig inkomende links hebben.</li>
+        <li><strong>Verweesde content:</strong> gepubliceerde pagina's waar geen enkele andere pagina naar linkt. Die vinden crawlers moeilijk.</li>
+      </ul>
+    </section>
+
+    <section id="tools">
+      <h2>Importeren en tools</h2>
+      <figure class="shot"><img src="img/tools.webp" alt="De pagina Importeren en tools" loading="lazy"></figure>
+      <h3>Importeren uit Yoast SEO of Rank Math</h3>
+      <p>Staat een van die plugins op je site, dan zie je hier een knop <em>Importeer uit …</em>. RankPilot Pro neemt titels, descriptions, keyphrases, robots-instellingen, social-velden, cornerstone, redirects en sjablonen over. Bestaande RankPilot-waarden worden niet overschreven en er wordt niets verwijderd bij de bron. Maak voor de zekerheid eerst een back-up. Zet de andere plugin daarna uit.</p>
+      <h3>Instellingen exporteren en importeren</h3>
+      <p>Bewaar je instellingen als JSON-bestand en zet ze op een andere site terug. Handig om meerdere sites gelijk in te stellen.</p>
+      <h3>Onderhoud</h3>
+      <ul>
+        <li><strong>Caches wissen en rewrite-regels vernieuwen:</strong> gebruik dit als <code>/sitemap_index.xml</code> of <code>/llms.txt</code> een 404 geeft.</li>
+        <li><strong>Instellingen terugzetten:</strong> zet alle instellingen terug naar de standaardwaarden. De SEO-gegevens bij je pagina's blijven staan.</li>
+      </ul>
+    </section>
+
+    <section id="updates">
+      <h2>Updates</h2>
+      <p>Nieuwe versies staan op <a href="https://github.com/stryv-nl/wp-rankpilot-pro/releases">GitHub onder Releases</a>, met per versie de wijzigingen. Zie ook de <a href="changelog/">changelog</a>.</p>
+      <div class="callout warn">
+        <p><strong>Nog geen automatische updates in WordPress</strong>
+        RankPilot Pro meldt nieuwe versies nog niet zelf onder Dashboard → Updates. Je updatet handmatig.</p>
+      </div>
+      <ol class="steps">
+        <li>Download de nieuwste <code>rankpilot-pro.zip</code> van de laatste release.</li>
+        <li>Ga naar <strong>Plugins → Nieuwe plugin → Plugin uploaden</strong> en kies de zip.</li>
+        <li>WordPress meldt dat de plugin al bestaat. Kies <strong>Huidige vervangen door geüploade</strong>.</li>
+      </ol>
+      <p>Je instellingen en de SEO-gegevens bij je pagina's blijven behouden.</p>
+    </section>
+
+    <section id="problemen">
+      <h2>Veelgestelde vragen</h2>
+      <details><summary>De sitemap of llms.txt geeft een 404.</summary><p>Ga naar Instellingen → Permalinks en sla op, of gebruik RankPilot Pro → Importeren &amp; tools → Caches wissen en rewrite-regels vernieuwen. Staat er een echt bestand <code>robots.txt</code>, <code>sitemap.xml</code> of <code>llms.txt</code> in de hoofdmap van je site? Verwijder dat, anders gaat dat bestand voor.</p></details>
+      <details><summary>Ik zie dubbele metatags of dubbel schema.</summary><p>Er staat nog een andere SEO-plugin aan. Importeer eerst en zet Yoast SEO, Rank Math, All in One SEO of SEOPress daarna uit. Ook sommige thema's voegen zelf metatags toe.</p></details>
+      <details><summary>Veel pagina's tonen "Geen zoekwoord".</summary><p>Dat klopt zolang er geen focus-keyphrase is ingesteld. Importeer je vanuit Yoast of Rank Math, dan worden bestaande keyphrases overgenomen. Anders vul je ze in de editor in. Je kunt de lijst filteren op <em>Geen zoekwoord</em> en per pagina een keyphrase toevoegen.</p></details>
+      <details><summary>De scores in de lijst kloppen niet met de editor.</summary><p>De score in de editor is leidend en wordt opgeslagen als je de pagina opslaat. De berekening via het dashboard is eenvoudiger. Open de pagina en sla hem op voor de volledige score.</p></details>
+      <details><summary>Het dashboard toont geen AI-crawlers.</summary><p>Controleer of <em>AI-crawlers loggen</em> aanstaat. Sites met een paginacache tonen alleen bezoeken die de cache missen. Het overzicht vult zich zodra bots als GPTBot of PerplexityBot je site bezoeken.</p></details>
+      <details><summary>Staat mijn site nu gegarandeerd in ChatGPT?</summary><p>Nee. Dat kan niemand beloven. RankPilot Pro zorgt dat AI-systemen je site mogen lezen, goed begrijpen en makkelijk kunnen citeren. Daarna hangt het af van de kwaliteit en autoriteit van je inhoud.</p></details>
+      <details><summary>Werkt het met paginabouwers zoals Elementor?</summary><p>De metatags, het schema en de sitemap werken altijd. De live analyse leest de tekst uit de editor. Bij paginabouwers kan die beperkt zijn en meldt de plugin dat in de SEO-analyse.</p></details>
+    </section>
+
+    <section id="verwijderen">
+      <h2>Verwijderen</h2>
+      <p>Deactiveer en verwijder de plugin via Plugins. De instellingen en de eigen tabellen (redirects, 404-log, linkindex en crawlerlog) worden dan opgeruimd. De SEO-gegevens bij je pagina's blijven bewaard, zodat je ze terugvindt als je de plugin opnieuw installeert.</p>
+    </section>
+
+    <footer class="site">
+      <span>Gemaakt door</span>
+      <a href="https://www.stryv.nl" aria-label="STRYV"><img class="logo" src="../assets/stryv-logo.svg" alt="STRYV"></a>
+      <span>&middot; <a href="https://www.stryv.nl">www.stryv.nl</a></span>
+    </footer>
+  </main>
+</div>
+</body>
+</html>
