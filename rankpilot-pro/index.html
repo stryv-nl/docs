@@ -18,6 +18,7 @@
       <li><a href="#starten">Eerste keer instellen</a></li>
       <li><a href="#dashboard">Dashboard</a></li>
       <li><a href="#ai-resultaat">AI-resultaat</a></li>
+      <li><a href="#feitenregister">Feitenregister</a></li>
       <li><a href="#dashboardblok">Blok in het WP-dashboard</a></li>
       <li><a href="#lijst">Stoplichten in de lijst</a></li>
       <li><a href="#editor">In de editor</a></li>
@@ -36,7 +37,7 @@
   <main>
     <header class="hero">
       <p class="eyebrow">Handleiding</p>
-      <h1>RankPilot Pro<span class="ver">v1.3.0</span></h1>
+      <h1>RankPilot Pro<span class="ver">v1.4.0</span></h1>
       <p class="lead">De complete SEO-oplossing, plus een laag om vindbaar te zijn in ChatGPT, Perplexity, Gemini en Claude.</p>
       <div class="buttons">
         <a class="btn primary" href="https://github.com/stryv-nl/wp-rankpilot-pro/releases/latest">Download de plugin</a>
@@ -52,6 +53,7 @@
         <div class="card"><strong>SEO zoals je gewend bent</strong><span>Titels en meta descriptions, focus-keyphrases, schema.org, XML-sitemaps, kruimelpad, redirects met 404-log en interne linksuggesties.</span></div>
         <div class="card"><strong>Vindbaar in AI</strong><span><code>llms.txt</code>, een Markdown-versie van elke pagina, beheer van 17 AI-crawlers, IndexNow naar Bing en blokken voor kernpunten en FAQ.</span></div>
         <div class="card"><strong>Stoplichten overal</strong><span>Een SEO-, leesbaarheids- en AI-score in de editor, in de lijst met berichten en in een blok op het WordPress-dashboard.</span></div>
+        <div class="card"><strong>Eén waarheid over je bedrijf</strong><span>Leg telefoonnummer, openingstijden en prijzen één keer vast en zie welke pagina's ze tegenspreken.</span></div>
         <div class="card"><strong>Zie wat AI oplevert</strong><span>Telt bezoekers uit ChatGPT, Perplexity, Gemini en Claude en laat zien hoeveel van hen contact opnemen. Zonder cookies.</span></div>
         <div class="card"><strong>Overstappen zonder gedoe</strong><span>Importeert titels, descriptions, keyphrases en redirects uit Yoast SEO en Rank Math.</span></div>
       </div>
@@ -153,6 +155,56 @@
       <h3>Privacy</h3>
       <p>De meting werkt zonder cookies en zonder IP-adressen. De plugin bewaart per dag, pagina en bron alleen een teller, en wist cijfers ouder dan 400 dagen. Binnen één bezoek onthoudt de browser kort, tot het tabblad dicht gaat, dat iemand uit een AI-app kwam. Daardoor kan een aanvraag aan de juiste bron gekoppeld worden. Er gaat niets naar andere partijen.</p>
       <p>Noem de meting in je privacyverklaring. Je kunt de meting uitzetten met de schakelaar <em>AI-bezoek meten</em> op deze pagina of bij Instellingen → AI-zichtbaarheid.</p>
+    </section>
+
+    <section id="feitenregister">
+      <h2>Feitenregister: één waarheid over je bedrijf</h2>
+      <p>Het <strong>Feitenregister</strong> (RankPilot Pro → Feitenregister) is de plek waar je de gegevens vastlegt die je site overal gelijk moet noemen: je telefoonnummer, e-mailadres, openingstijden, werkgebied en eigen feiten zoals een prijs. RankPilot controleert daarna of een pagina iets anders zegt. Dat is belangrijk omdat een AI-assistent beide versies kan citeren, en dan noemt hij bijvoorbeeld een oude prijs.</p>
+      <figure class="shot"><img src="img/feitenregister.webp" alt="De pagina Feitenregister met vier cijfers, vier tegenstrijdigheden naast het register, de keuzes voor wanneer er gecontroleerd wordt en uitleg over de controle" loading="lazy"><figcaption>Het Feitenregister met voorbeeldgegevens van een lokale installateur.</figcaption></figure>
+
+      <h3>Wat je ziet</h3>
+      <ul>
+        <li><strong>Vier cijfers bovenaan:</strong> het aantal feiten, het aantal gecontroleerde pagina's, het aantal tegenstrijdigheden (met de verandering sinds de vorige controle) en het aantal pagina's zonder afwijking.</li>
+        <li><strong>Tegenstrijdigheden:</strong> per afwijking links wat je register zegt en rechts wat de pagina zegt, met de afwijkende tekst gemarkeerd. Staat dezelfde afwijking op meer pagina's, dan zie je <em>+ 2 andere pagina's</em> en een lijst ervan.</li>
+        <li><strong>Het register:</strong> je feiten met per feit waar ze worden gebruikt en of er pagina's afwijken.</li>
+      </ul>
+
+      <h3>Wat doe je met een melding?</h3>
+      <ul>
+        <li><strong>Pagina aanpassen</strong> opent de pagina in de editor. Zo corrigeer je de tekst.</li>
+        <li><strong>Register aanpassen</strong> opent het feit in het register. Is de pagina juist en je register verouderd, dan pas je het daar aan. Na het opslaan wordt alles opnieuw gecontroleerd.</li>
+        <li><strong>Negeren</strong> haalt de melding uit je overzicht, bijvoorbeeld bij het nummer van een filiaal. Dezelfde afwijking wordt dan ook op andere pagina's niet meer gemeld. Onder <em>Genegeerde meldingen</em> zet je hem met <em>Weer melden</em> terug.</li>
+      </ul>
+
+      <h3>Feiten vastleggen</h3>
+      <p>Telefoonnummer, e-mailadres, adres, openingstijden en werkgebied komen uit <strong>Instellingen → Organisatie &amp; profielen</strong>. Je kunt ze daar of in het register aanpassen. Het adres pas je alleen bij de instellingen aan. Met <strong>+ Feit toevoegen</strong> maak je eigen feiten:</p>
+      <figure class="shot small"><img src="img/feitenregister-bewerken.webp" alt="Het register met aan de zijkant het formulier om het feit Prijs laadpaal installeren te bewerken" loading="lazy"><figcaption>Een feit bewerken. Het formulier staat bovenaan in de zijkolom.</figcaption></figure>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Soort</th><th>Wat je invult</th><th>Wanneer meldt de controle iets?</th></tr></thead>
+        <tbody>
+          <tr><td>Telefoonnummer</td><td>Je nummer, en eventueel andere toegestane nummers.</td><td>Een pagina noemt een Nederlands nummer dat niet in je register staat.</td></tr>
+          <tr><td>E-mailadres</td><td>Je adres, en eventueel andere toegestane adressen.</td><td>Een pagina noemt een ander adres op jouw domein. Adressen van andere domeinen worden niet gemeld.</td></tr>
+          <tr><td>Openingstijden</td><td>Eén regel per dag of groep, zoals <code>Ma-Vr 08:00-17:00</code>.</td><td>Een pagina noemt bij een dag of het woord open een tijdsblok dat niet in je register staat.</td></tr>
+          <tr><td>Prijs</td><td>De prijs en de woorden waar hij bij hoort, zoals <em>laadpaal installeren</em>.</td><td>Er staat een ander bedrag vlak bij die woorden.</td></tr>
+          <tr><td>Eigen feit</td><td>De juiste waarde, en de woorden die er niet mogen staan.</td><td>Een pagina bevat een van die woorden, zoals een oud werkgebied.</td></tr>
+        </tbody>
+      </table></div>
+      <p>Ook een afwijkende postcode wordt gemeld. Een feit waarvoor niets is ingevuld om op te controleren, krijgt de status <em>Niet gecontroleerd</em>.</p>
+
+      <h3>Wanneer wordt er gecontroleerd?</h3>
+      <ul>
+        <li><strong>Handmatig:</strong> met <strong>Nu controleren</strong> rechtsboven loopt RankPilot al je gepubliceerde pagina's en berichten langs. De eerste controle moet je zelf starten.</li>
+        <li><strong>Na het opslaan van een pagina:</strong> die ene pagina wordt direct opnieuw gecontroleerd. Staat standaard aan.</li>
+        <li><strong>Wekelijks:</strong> een e-mail aan het beheerdersadres, alleen als er nieuwe afwijkingen zijn. Staat standaard uit.</li>
+        <li><strong>Ook concepten en privépagina's:</strong> standaard uit.</li>
+      </ul>
+      <p>Bij <em>Eigen feiten in llms.txt</em> komen je zelf toegevoegde feiten in een blok <code>## Feiten</code> in <code>llms.txt</code>, zodat AI-systemen ze rechtstreeks lezen. Je telefoonnummer, adres en andere vaste gegevens staan daar al.</p>
+
+      <div class="callout warn">
+        <p><strong>De controle is niet waterdicht.</strong>
+        Ze zoekt patronen in de tekst van je pagina's en gebruikt geen AI. Daardoor kan ze iets missen, bijvoorbeeld een prijs die in een afbeelding of een tabel van een paginabouwer staat, of een melding geven die niet klopt, bijvoorbeeld bij een bewust ander nummer. Zet zulke nummers bij <em>Ook toegestaan</em> of kies Negeren. De controle leest de inhoud van de editor, dus teksten die een thema of paginabouwer zelf toevoegt, worden niet altijd gezien.</p>
+      </div>
+      <p>Er verlaat geen gegevens je site. De controle draait volledig op je eigen server.</p>
     </section>
 
     <section id="dashboardblok">
@@ -287,7 +339,7 @@
       <figure class="shot"><img src="img/settings-ai.webp" alt="Het tabblad AI-zichtbaarheid met llms.txt, Markdown, crawlers, IndexNow en de AI-generator" loading="lazy"></figure>
 
       <h3>llms.txt</h3>
-      <p>Een leesbare samenvatting van je site voor AI-systemen, op <code>/llms.txt</code>. Optioneel komt er ook <code>/llms-full.txt</code> met alle inhoud als Markdown. Je kiest de titel, een samenvatting in twee zinnen, de inhoudstypes en het maximale aantal links per type.</p>
+      <p>Een leesbare samenvatting van je site voor AI-systemen, op <code>/llms.txt</code>. Optioneel komt er ook <code>/llms-full.txt</code> met alle inhoud als Markdown. Je kiest de titel, een samenvatting in twee zinnen, de inhoudstypes en het maximale aantal links per type. Eigen feiten uit het <a href="#feitenregister">Feitenregister</a> komen er als blok <code>Feiten</code> bij.</p>
       <pre><code># Voorbeeld Installatie
 
 &gt; Elektricien voor woningen en bedrijven in de regio.
@@ -390,13 +442,14 @@
       <details><summary>Veel pagina's tonen "Geen zoekwoord".</summary><p>Dat klopt zolang er geen focus-keyphrase is ingesteld. Importeer je vanuit Yoast of Rank Math, dan worden bestaande keyphrases overgenomen. Anders vul je ze in de editor in. Je kunt de lijst filteren op <em>Geen zoekwoord</em> en per pagina een keyphrase toevoegen.</p></details>
       <details><summary>De scores in de lijst kloppen niet met de editor.</summary><p>De score in de editor is leidend en wordt opgeslagen als je de pagina opslaat. De berekening via het dashboard is eenvoudiger. Open de pagina en sla hem op voor de volledige score.</p></details>
       <details><summary>Het dashboard toont geen AI-crawlers.</summary><p>Controleer of <em>AI-crawlers loggen</em> aanstaat. Sites met een paginacache tonen alleen bezoeken die de cache missen. Het overzicht vult zich zodra bots als GPTBot of PerplexityBot je site bezoeken.</p></details>
+      <details><summary>Het Feitenregister meldt iets dat klopt, of mist iets.</summary><p>De controle zoekt patronen in de tekst en is niet waterdicht. Een bewust ander nummer of adres zet je bij Ook toegestaan, of je kiest Negeren. Mist de controle iets, dan staat het waarschijnlijk niet in de tekst van de editor, maar in een paginabouwer, een afbeelding of een thema-onderdeel. Controleer die onderdelen zelf.</p></details>
       <details><summary>Staat mijn site nu gegarandeerd in ChatGPT?</summary><p>Nee. Dat kan niemand beloven. RankPilot Pro zorgt dat AI-systemen je site mogen lezen, goed begrijpen en makkelijk kunnen citeren. Daarna hangt het af van de kwaliteit en autoriteit van je inhoud.</p></details>
       <details><summary>Werkt het met paginabouwers zoals Elementor?</summary><p>De metatags, het schema en de sitemap werken altijd. De live analyse leest de tekst uit de editor. Bij paginabouwers kan die beperkt zijn en meldt de plugin dat in de SEO-analyse.</p></details>
     </section>
 
     <section id="verwijderen">
       <h2>Verwijderen</h2>
-      <p>Deactiveer en verwijder de plugin via Plugins. De instellingen en de eigen tabellen (redirects, 404-log, linkindex, crawlerlog en de AI-resultaatcijfers) worden dan opgeruimd. De SEO-gegevens bij je pagina's blijven bewaard, zodat je ze terugvindt als je de plugin opnieuw installeert.</p>
+      <p>Deactiveer en verwijder de plugin via Plugins. De instellingen en de eigen tabellen (redirects, 404-log, linkindex, crawlerlog en de AI-resultaatcijfers) en het Feitenregister met het controlerapport worden dan opgeruimd. De SEO-gegevens bij je pagina's blijven bewaard, zodat je ze terugvindt als je de plugin opnieuw installeert.</p>
     </section>
 
     <footer class="site">
